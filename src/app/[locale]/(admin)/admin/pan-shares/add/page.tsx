@@ -88,9 +88,9 @@ export default async function PanShareAddPage({
       },
       {
         name: 'expiredAt',
-        type: 'datetime',
+        type: 'text',
         title: t('fields.expired_at'),
-        tip: 'Leave empty if no expiration',
+        tip: 'Format: YYYY-MM-DD, leave empty if no expiration',
       },
     ],
     passby: {},

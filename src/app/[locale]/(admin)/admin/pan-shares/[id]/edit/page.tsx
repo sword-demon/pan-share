@@ -102,9 +102,9 @@ export default async function PanShareEditPage({
       },
       {
         name: 'expiredAt',
-        type: 'datetime',
+        type: 'text',
         title: t('fields.expired_at'),
-        tip: 'Leave empty if no expiration',
+        tip: 'Format: YYYY-MM-DD, leave empty if no expiration',
       },
       {
         name: 'status',
@@ -120,7 +120,7 @@ export default async function PanShareEditPage({
     data: {
       ...panShare,
       expiredAt: panShare.expiredAt
-        ? new Date(panShare.expiredAt).toISOString().slice(0, 16)
+        ? new Date(panShare.expiredAt).toISOString().slice(0, 10)
         : '',
     },
     submit: {
