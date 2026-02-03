@@ -8,145 +8,81 @@
       "usage",
       "features",
       "stats",
-      "testimonials",
       "faq",
       "cta"
     ],
     "sections": {
       "hero": {
         "id": "hero",
-        "title": "Ship AI Startups in hours, not days",
-        "highlight_text": "in hours",
-        "description": "ShipAny is a NextJS boilerplate for building AI SaaS startups.<br/>Ship Fast with a variety of templates and components.",
-        "announcement": {
-          "badge": "New",
-          "title": "🎉 ShipAny Template Two",
-          "url": "/pricing"
-        },
-        "tip": "🎁 Special offer for the first 1000 users",
+        "title": "Discover and Share Cloud Drive Resources",
+        "highlight_text": "Cloud Drive",
+        "description": "panShare is a resource sharing platform supporting Baidu Pan, Aliyun Drive, Quark Drive and more.<br/>Easily discover, share, and manage cloud drive resources.",
+        "tip": "Supporting multiple mainstream cloud drive platforms",
         "buttons": [
           {
-            "title": "Get Started",
-            "icon": "Zap",
-            "url": "/pricing",
+            "title": "Browse Resources",
+            "icon": "Search",
+            "url": "/",
             "target": "_self",
             "variant": "default"
           },
           {
-            "title": "Read Document",
-            "icon": "BookOpenText",
-            "url": "/docs",
-            "target": "_blank",
+            "title": "Submit Share",
+            "icon": "Share2",
+            "url": "/submit",
+            "target": "_self",
             "variant": "outline"
           }
         ],
-        "show_avatars": true,
-        "avatars_tip": "999+ users are using ShipAny",
-        "show_award": false,
-        "image": {
-          "src": "/imgs/features/admin.png",
-          "alt": "hero",
-          "width": 1200,
-          "height": 800
-        },
-        "image_invert": {
-          "src": "/imgs/features/admin-dark.png",
-          "alt": "hero",
-          "width": 1200,
-          "height": 800
-        },
-        "background_image": {
-          "src": "/imgs/bg/tree.jpg",
-          "alt": "hero"
-        }
+        "show_avatars": false,
+        "show_award": false
       },
       "logos": {
-        "id": "logos",
-        "title": "ShipAny is built on the shoulders of giants",
+        "title": "Supported Cloud Drive Platforms",
         "items": [
           {
-            "title": "Next.js",
-            "image": {
-              "src": "/imgs/logos/nextjs.svg",
-              "alt": "Next.js"
-            }
+            "title": "Baidu Pan"
           },
           {
-            "title": "React",
-            "image": {
-              "src": "/imgs/logos/react.svg",
-              "alt": "React"
-            }
+            "title": "Aliyun Drive"
           },
           {
-            "title": "TailwindCSS",
-            "image": {
-              "src": "/imgs/logos/tailwindcss.svg",
-              "alt": "TailwindCSS"
-            }
+            "title": "Quark Drive"
           },
           {
-            "title": "Shadcn/UI",
-            "image": {
-              "src": "/imgs/logos/shadcn.svg",
-              "alt": "Shadcn/UI"
-            }
+            "title": "Xunlei Drive"
           },
           {
-            "title": "Vercel",
-            "image": {
-              "src": "/imgs/logos/vercel.svg",
-              "alt": "Vercel"
-            }
+            "title": "115 Drive"
           }
         ]
       },
       "introduce": {
         "block": "features-list",
         "id": "introduce",
-        "title": "What is ShipAny",
-        "label": "Introduce",
-        "description": "ShipAny is a NextJS boilerplate for building AI SaaS startups, including templates, components, and documentation.",
-        "image": {
-          "src": "/imgs/features/landing-page.png",
-          "alt": "introduce"
-        },
+        "title": "What is panShare?",
+        "label": "Introduction",
+        "description": "panShare is a platform focused on cloud drive resource sharing, making quality resources easier to discover and access.",
         "items": [
           {
-            "title": "Ready-to-use Templates",
-            "description": "Choose from dozens of production-ready AI SaaS templates to quickly start your project.",
-            "icon": "RiNextjsFill",
-            "image": {
-              "src": "/imgs/features/1.png",
-              "alt": "introduce"
-            }
+            "title": "Multi-Platform Support",
+            "description": "Support for Baidu Pan, Aliyun Drive, Quark Drive, Xunlei Drive, 115 Drive and more.",
+            "icon": "RiCloudLine"
           },
           {
-            "title": "Infrastructure Setup",
-            "description": "Get instant access to scalable infrastructure with best practices built-in.",
-            "icon": "RiDatabase2Line",
-            "image": {
-              "src": "/imgs/features/2.png",
-              "alt": "introduce"
-            }
+            "title": "Easy Sharing",
+            "description": "One-click submit share links and extraction codes to quickly share resources with others.",
+            "icon": "RiShareLine"
           },
           {
-            "title": "Quick Deployment",
-            "description": "Deploy your AI SaaS application to production in hours, not days.",
-            "icon": "RiCloudyFill",
-            "image": {
-              "src": "/imgs/features/3.png",
-              "alt": "introduce"
-            }
+            "title": "Resource Management",
+            "description": "Clear categorization and search functionality to easily find the resources you need.",
+            "icon": "RiFolderLine"
           },
           {
-            "title": "AI Integration",
-            "description": "Integrate AI into your project with ease using our built-in AI SDK.",
-            "icon": "RiRobot2Line",
-            "image": {
-              "src": "/imgs/features/4.png",
-              "alt": "introduce"
-            }
+            "title": "Community Driven",
+            "description": "Users participate together, sharing quality resources and building a resource community.",
+            "icon": "RiTeamLine"
           }
         ],
         "className": "bg-muted"
@@ -154,269 +90,160 @@
       "benefits": {
         "block": "features-accordion",
         "id": "benefits",
-        "title": "Why Choose ShipAny",
-        "label": "Benefits",
-        "description": "Get everything you need to launch your AI startup - from ready-to-use templates to technical support.",
+        "title": "Why Choose panShare",
+        "label": "Advantages",
+        "description": "We are committed to providing the best cloud drive resource sharing experience.",
         "items": [
           {
-            "title": "Complete Framework",
-            "description": "Built on Next.js with authentication, payments, and AI integration - everything works out of the box.",
-            "icon": "RiNextjsFill",
-            "image": {
-              "src": "/imgs/features/user-billing.png",
-              "alt": "benefits"
-            }
+            "title": "Rich Resources",
+            "description": "Aggregating quality cloud drive resources shared by users, covering learning, tools, entertainment and more.",
+            "icon": "RiArchiveLine"
           },
           {
-            "title": "Rich Templates Library",
-            "description": "Choose from various AI SaaS templates to kickstart your project - chatbots, image generation, and more.",
-            "icon": "RiClapperboardAiLine",
-            "image": {
-              "src": "/imgs/features/admin-settings.png",
-              "alt": "benefits"
-            }
+            "title": "Easy to Use",
+            "description": "Clear and intuitive interface design. Browse without registration, login to submit and copy share info.",
+            "icon": "RiUserLine"
           },
           {
-            "title": "Technical Guidance",
-            "description": "Get dedicated support and join our developer community to ensure your successful launch.",
-            "icon": "RiCodeFill",
-            "image": {
-              "src": "/imgs/features/landing-page.png",
-              "alt": "benefits"
-            }
+            "title": "Safe and Reliable",
+            "description": "All shared content is reviewed to ensure resource quality and security.",
+            "icon": "RiShieldCheckLine"
           }
         ]
       },
       "usage": {
         "block": "features-step",
         "id": "usage",
-        "title": "How to Launch with ShipAny",
-        "description": "Get your AI SaaS startup running in three simple steps:",
-        "image": {
-          "src": "/imgs/features/1.png",
-          "alt": "usage"
-        },
-        "image_position": "left",
+        "title": "How to Use panShare",
+        "description": "Three steps to start your cloud drive resource journey:",
         "text_align": "center",
         "items": [
           {
-            "title": "Get ShipAny",
-            "description": "Buy ShipAny with a one-time payment. Check your email for the code and documentation.",
-            "image": {
-              "src": "/imgs/features/5.png",
-              "alt": "usage"
-            }
+            "title": "Browse and Discover",
+            "description": "Browse cloud drive shares on the homepage, use search and filters to find what you need."
           },
           {
-            "title": "Start Your Project",
-            "description": "Read the documentation and clone the code of ShipAny. Start building your AI SaaS startup.",
-            "image": {
-              "src": "/imgs/features/6.png",
-              "alt": "usage"
-            }
+            "title": "Login",
+            "description": "Register or login to your account to unlock full features."
           },
           {
-            "title": "Customize Your Project",
-            "description": "Modify the template with your data and contents. Specific AI functionality needs.",
-            "image": {
-              "src": "/imgs/features/7.png",
-              "alt": "usage"
-            }
+            "title": "Copy and Use",
+            "description": "One-click copy share links and extraction codes, go to the corresponding cloud drive to get resources."
           },
           {
-            "title": "Deploy to Production",
-            "description": "Deploy your project to production with a few steps and start serving customers immediately.",
-            "image": {
-              "src": "/imgs/features/8.png",
-              "alt": "usage"
-            }
+            "title": "Share and Contribute",
+            "description": "Have quality resources? Submit a share and let more people benefit."
           }
         ],
         "className": "bg-muted"
       },
       "features": {
         "id": "features",
-        "title": "Key Features of ShipAny",
-        "description": "Everything you need to launch your AI SaaS startup quickly and efficiently.",
+        "title": "Platform Features",
+        "description": "Practical features designed for cloud drive resource sharing.",
         "items": [
           {
-            "title": "Next.js Boilerplate",
-            "description": "Production-ready Next.js templates with SEO-friendly structure and i18n support.",
-            "icon": "RiNextjsFill"
+            "title": "Multi-Drive Support",
+            "description": "Support for Baidu, Aliyun, Quark, Xunlei, 115 and other mainstream cloud drives.",
+            "icon": "RiCloudLine"
           },
           {
-            "title": "Authentication & Payments",
-            "description": "Integrated Google OAuth, one-tap login, and Stripe payment processing.",
-            "icon": "RiKey2Fill"
+            "title": "Smart Search",
+            "description": "Powerful search functionality to quickly locate the resources you need.",
+            "icon": "RiSearchLine"
           },
           {
-            "title": "Data Infrastructure",
-            "description": "Built-in Supabase integration for reliable and scalable data storage.",
-            "icon": "RiDatabase2Line"
+            "title": "Category Filter",
+            "description": "Filter by cloud drive type to precisely find target resources.",
+            "icon": "RiFilterLine"
           },
           {
-            "title": "One-Click Deployment",
-            "description": "Seamless deployment to Vercel or Cloudflare with automated setup.",
-            "icon": "RiCloudy2Fill"
+            "title": "One-Click Copy",
+            "description": "Copy links and extraction codes with one click for more convenience.",
+            "icon": "RiFileCopyLine"
           },
           {
-            "title": "Business Analytics",
-            "description": "Integrated Google Analytics and Search Console for tracking growth.",
-            "icon": "RiBarChart2Line"
+            "title": "Expiration Notice",
+            "description": "Clear marking of resource expiration time to avoid getting expired resources.",
+            "icon": "RiTimeLine"
           },
           {
-            "title": "AI-Ready Infrastructure",
-            "description": "Pre-configured AI integration with built-in credits system and API sales.",
-            "icon": "RiRobot2Line"
+            "title": "User Submission",
+            "description": "Users can submit shares, displayed after review, building the resource library together.",
+            "icon": "RiUploadLine"
           }
         ]
       },
       "stats": {
         "id": "stats",
-        "title": "People Love ShipAny",
-        "description": "for it's easy to use and fast to ship.",
+        "title": "Platform Stats",
+        "description": "Growing resource library and active community.",
         "items": [
           {
-            "title": "999+",
-            "description": "Customers"
+            "title": "Multiple",
+            "description": "Cloud Drive Types"
           },
           {
-            "title": "200+",
-            "description": "Blocks"
+            "title": "Easy",
+            "description": "One-Click Copy"
           },
           {
-            "title": "50+",
-            "description": "Templates"
+            "title": "Free",
+            "description": "Browse and Use"
           }
         ],
         "className": "bg-muted"
       },
-      "testimonials": {
-        "id": "testimonials",
-        "title": "What Users Say About ShipAny",
-        "description": "Hear from developers and founders who launched their AI startups with ShipAny.",
-        "items": [
-          {
-            "name": "David Chen",
-            "role": "Founder of AIWallpaper.shop",
-            "quote": "ShipAny saved us months of development time. We launched our AI wallpaper business in just 2 days and got our first paying customer within a week!",
-            "image": {
-              "src": "/imgs/avatars/1.png",
-              "alt": "david"
-            }
-          },
-          {
-            "name": "Rachel Kim",
-            "role": "CTO at HeyBeauty.ai",
-            "quote": "The pre-built AI infrastructure is a game-changer. We didn't have to worry about architecture - just focused on our AI beauty tech and went live fast.",
-            "image": {
-              "src": "/imgs/avatars/2.png",
-              "alt": "rachel"
-            }
-          },
-          {
-            "name": "Marcus Thompson",
-            "role": "Solo Developer",
-            "quote": "As a solo developer, ShipAny gave me everything I needed - auth, payments, AI integration, and beautiful UI. Launched my SaaS in a weekend!",
-            "image": {
-              "src": "/imgs/avatars/3.png",
-              "alt": "marcus"
-            }
-          },
-          {
-            "name": "Sofia Garcia",
-            "role": "CEO of Melodisco",
-            "quote": "The templates are production-ready and highly customizable. We built our AI music platform in hours instead of months. Incredible time-to-market!",
-            "image": {
-              "src": "/imgs/avatars/4.png",
-              "alt": "sofia"
-            }
-          },
-          {
-            "name": "James Wilson",
-            "role": "Tech Lead at GPTs.works",
-            "quote": "ShipAny's infrastructure is rock-solid. We scaled from 0 to 10k users without touching the backend. Best investment for our AI startup.",
-            "image": {
-              "src": "/imgs/avatars/5.png",
-              "alt": "james"
-            }
-          },
-          {
-            "name": "Anna Zhang",
-            "role": "Startup Founder",
-            "quote": "From idea to launch in 3 days! ShipAny's templates and deployment tools made it possible to test our AI business concept incredibly fast.",
-            "image": {
-              "src": "/imgs/avatars/6.png",
-              "alt": "anna"
-            }
-          }
-        ]
-      },
       "faq": {
         "id": "faq",
-        "title": "Frequently Asked Questions About ShipAny",
-        "description": "Have another question? Contact us on Discord or by email.",
+        "title": "Frequently Asked Questions",
+        "description": "Common questions about panShare.",
         "items": [
           {
-            "question": "What exactly is ShipAny and how does it work?",
-            "answer": "ShipAny is a comprehensive NextJS boilerplate designed specifically for building AI SaaS startups. It provides ready-to-use templates, infrastructure setup, and deployment tools that help you launch your AI business in hours instead of days."
+            "question": "What is panShare?",
+            "answer": "panShare is a cloud drive resource sharing platform where users can discover and share resource links from various cloud drive platforms. We support Baidu Pan, Aliyun Drive, Quark Drive and other mainstream platforms."
           },
           {
-            "question": "Do I need advanced technical skills to use ShipAny?",
-            "answer": "While basic programming knowledge is helpful, ShipAny is designed to be developer-friendly. Our templates and documentation make it easy to get started, even if you're not an expert in AI or cloud infrastructure."
+            "question": "Is panShare free to use?",
+            "answer": "Yes. Browsing and using share information on panShare is completely free. We are committed to providing users with a convenient resource discovery experience."
           },
           {
-            "question": "What types of AI SaaS can I build with ShipAny?",
-            "answer": "ShipAny supports a wide range of AI applications, from content generation to data analysis tools. Our templates cover popular use cases like AI chatbots, content generators, image processing apps, and more."
+            "question": "How do I submit my share?",
+            "answer": "After logging in, click the 'Submit Share' button, fill in the share title, description, link and extraction code to submit. Submitted content needs to be reviewed before it will be displayed."
           },
           {
-            "question": "How long does it typically take to launch with ShipAny?",
-            "answer": "With ShipAny, you can have a working prototype in hours and a production-ready application in hours. Our one-click deployment and pre-configured infrastructure significantly reduce the traditional months-long development cycle."
+            "question": "Which cloud drive platforms are supported?",
+            "answer": "Currently we support Baidu Pan, Aliyun Drive, Quark Drive, Xunlei Drive, 115 Drive and other custom types. We will continue to add more platform support."
           },
           {
-            "question": "What's included in the ShipAny infrastructure?",
-            "answer": "ShipAny provides a complete infrastructure stack including authentication, database setup, API integration, payment processing, and scalable cloud deployment. Everything is pre-configured following industry best practices."
+            "question": "Do shared resources expire?",
+            "answer": "Some cloud drive share links may have expiration times. We clearly mark the expiration time on resource cards to help you judge if the resource is still valid."
           },
           {
-            "question": "Can I customize the templates to match my brand?",
-            "answer": "Absolutely! All ShipAny templates are fully customizable. You can modify the design, features, and functionality to match your brand identity and specific business requirements while maintaining the robust underlying infrastructure."
+            "question": "How is share content quality ensured?",
+            "answer": "All user-submitted shares need to be reviewed by administrators to ensure content quality and compliance. We also welcome users to report problematic resources."
           }
         ]
       },
       "cta": {
         "id": "cta",
-        "title": "Ship your first AI SaaS Startup",
-        "description": "Start from here, ship with ShipAny.",
+        "title": "Start Exploring Cloud Drive Resources",
+        "description": "Discover and share quality cloud drive resources on panShare.",
         "buttons": [
           {
-            "title": "Get ShipAny",
-            "url": "https://shipany.ai",
-            "target": "_blank",
-            "icon": "Zap"
+            "title": "Browse Resources",
+            "url": "/",
+            "target": "_self",
+            "icon": "Search"
           },
           {
-            "title": "Read Document",
-            "url": "/docs",
-            "target": "_blank",
+            "title": "Submit Share",
+            "url": "/submit",
+            "target": "_self",
             "variant": "outline",
-            "icon": "BookOpenText"
+            "icon": "Share2"
           }
         ],
-        "className": "bg-muted"
-      },
-      "subscribe": {
-        "id": "subscribe",
-        "title": "Subscribe to our newsletter",
-        "description": "Get the latest news and updates from ShipAny.",
-        "submit": {
-          "input": {
-            "placeholder": "Enter your email"
-          },
-          "button": {
-            "title": "Subscribe"
-          },
-          "action": "/api/subscribe"
-        },
         "className": "bg-muted"
       }
     }

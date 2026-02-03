@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "title": "ShipAny 模板二",
-    "description": "ShipAny 是用于构建 AI SaaS 创业项目的 NextJS 脚手架。提供丰富模板和组件，助您快速上线产品。",
-    "keywords": "shipany, shipany-boilerplate, shipany-template-two-demo"
+    "title": "panShare",
+    "description": "发现和分享优质网盘资源。支持百度网盘、阿里云盘、夸克网盘等多种网盘分享。",
+    "keywords": "panshare, 网盘分享, 百度网盘, 阿里云盘, 夸克网盘, 文件分享"
   },
   "sign": {
     "sign_in_title": "登录",

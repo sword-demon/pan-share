@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "title": "ShipAny Template Two",
-    "description": "ShipAny is a NextJS boilerplate for building AI SaaS startups. Ship Fast with a variety of templates and components.",
-    "keywords": "shipany, shipany-boilerplate, shipany-template-two-demo"
+    "title": "panShare",
+    "description": "Discover and share cloud drive resources. A platform for sharing Baidu Pan, Aliyun Drive, Quark Drive and more.",
+    "keywords": "panshare, cloud drive, baidu pan, aliyun drive, quark drive, file sharing"
   },
   "sign": {
     "sign_in_title": "Sign In",

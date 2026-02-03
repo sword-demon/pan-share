@@ -1,10 +1,10 @@
 {
   "header": {
     "brand": {
-      "title": "ShipAny Two",
+      "title": "panShare",
       "logo": {
         "src": "/logo.png",
-        "alt": "ShipAny Two"
+        "alt": "panShare"
       },
       "url": "/admin"
     },
@@ -78,6 +78,11 @@
     {
       "title": "Business",
       "items": [
+        {
+          "title": "Pan Shares",
+          "url": "/admin/pan-shares",
+          "icon": "Share2"
+        },
         {
           "title": "AI Tasks",
           "url": "/admin/ai-tasks",

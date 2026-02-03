@@ -8,144 +8,81 @@
       "usage",
       "features",
       "stats",
-      "testimonials",
       "faq",
       "cta"
     ],
     "sections": {
       "hero": {
         "id": "hero",
-        "title": "一小时快速上线你的 AI 创业项目",
-        "highlight_text": "一小时",
-        "description": "ShipAny 是用于构建 AI SaaS 创业项目的 NextJS 项目模板。<br/>集成常用功能，快速上线你的产品。",
-        "announcement": {
-          "badge": "全新",
-          "title": "🎉 ShipAny 模板二已发布",
-          "url": "/pricing"
-        },
-        "tip": "🎁 前 1000 名用户特价优惠",
+        "title": "发现和分享优质网盘资源",
+        "highlight_text": "网盘资源",
+        "description": "panShare 是一个网盘资源分享平台，汇聚百度网盘、阿里云盘、夸克网盘等多种网盘资源。<br/>轻松发现、分享、管理你的网盘资源。",
+        "tip": "支持多种主流网盘平台",
         "buttons": [
           {
-            "title": "立即开始",
-            "icon": "Zap",
-            "url": "/pricing",
+            "title": "浏览资源",
+            "icon": "Search",
+            "url": "/",
             "target": "_self",
             "variant": "default"
           },
           {
-            "title": "阅读文档",
-            "icon": "BookOpenText",
-            "url": "/docs",
-            "target": "_blank",
+            "title": "提交分享",
+            "icon": "Share2",
+            "url": "/submit",
+            "target": "_self",
             "variant": "outline"
           }
         ],
-        "show_avatars": true,
-        "avatars_tip": "999+ 用户在使用 ShipAny 上站",
-        "show_award": false,
-        "image": {
-          "src": "/imgs/features/admin.png",
-          "alt": "hero",
-          "width": 1200,
-          "height": 800
-        },
-        "image_invert": {
-          "src": "/imgs/features/admin-dark.png",
-          "alt": "hero",
-          "width": 1200,
-          "height": 800
-        },
-        "background_image": {
-          "src": "/imgs/bg/tree.jpg",
-          "alt": "hero"
-        }
+        "show_avatars": false,
+        "show_award": false
       },
       "logos": {
-        "title": "ShipAny 使用以下技术栈构建",
+        "title": "支持的网盘平台",
         "items": [
           {
-            "title": "Next.js",
-            "image": {
-              "src": "/imgs/logos/nextjs.svg",
-              "alt": "Next.js"
-            }
+            "title": "百度网盘"
           },
           {
-            "title": "React",
-            "image": {
-              "src": "/imgs/logos/react.svg",
-              "alt": "React"
-            }
+            "title": "阿里云盘"
           },
           {
-            "title": "TailwindCSS",
-            "image": {
-              "src": "/imgs/logos/tailwindcss.svg",
-              "alt": "TailwindCSS"
-            }
+            "title": "夸克网盘"
           },
           {
-            "title": "Shadcn/UI",
-            "image": {
-              "src": "/imgs/logos/shadcn.svg",
-              "alt": "Shadcn/UI"
-            }
+            "title": "迅雷网盘"
           },
           {
-            "title": "Vercel",
-            "image": {
-              "src": "/imgs/logos/vercel.svg",
-              "alt": "Vercel"
-            }
+            "title": "115网盘"
           }
         ]
       },
       "introduce": {
         "block": "features-list",
         "id": "introduce",
-        "title": "ShipAny 是什么？",
-        "label": "产品简介",
-        "description": "ShipAny 是专为 AI SaaS 创业项目打造的 NextJS 脚手架，包括丰富模板、组件及文档。",
-        "image": {
-          "src": "/imgs/features/landing-page.png",
-          "alt": "introduce"
-        },
+        "title": "panShare 是什么？",
+        "label": "平台简介",
+        "description": "panShare 是一个专注于网盘资源分享的平台，让优质资源更容易被发现和获取。",
         "items": [
           {
-            "title": "开箱即用的模板",
-            "description": "从数十款生产级 AI SaaS 模板中选择，快速开启你的项目。",
-            "icon": "RiNextjsFill",
-            "image": {
-              "src": "/imgs/features/1.png",
-              "alt": "introduce"
-            }
+            "title": "多平台支持",
+            "description": "支持百度网盘、阿里云盘、夸克网盘、迅雷网盘、115网盘等主流网盘平台。",
+            "icon": "RiCloudLine"
           },
           {
-            "title": "基础设施搭建",
-            "description": "内置最佳实践，即刻拥有可扩展的基础设施。",
-            "icon": "RiDatabase2Line",
-            "image": {
-              "src": "/imgs/features/2.png",
-              "alt": "introduce"
-            }
+            "title": "便捷分享",
+            "description": "一键提交分享链接和提取码，快速分享你的资源给他人。",
+            "icon": "RiShareLine"
           },
           {
-            "title": "极速部署",
-            "description": "AI SaaS 产品快速上线，助力小时级交付。",
-            "icon": "RiCloudyFill",
-            "image": {
-              "src": "/imgs/features/3.png",
-              "alt": "introduce"
-            }
+            "title": "资源管理",
+            "description": "清晰的分类和搜索功能，轻松找到你需要的资源。",
+            "icon": "RiFolderLine"
           },
           {
-            "title": "AI 集成",
-            "description": "通过内置的 AI SDK，轻松为你的项目集成 AI 能力。",
-            "icon": "RiRobot2Line",
-            "image": {
-              "src": "/imgs/features/4.png",
-              "alt": "introduce"
-            }
+            "title": "社区驱动",
+            "description": "用户共同参与，分享优质资源，共建资源社区。",
+            "icon": "RiTeamLine"
           }
         ],
         "className": "bg-muted"
@@ -153,269 +90,160 @@
       "benefits": {
         "block": "features-accordion",
         "id": "benefits",
-        "title": "为何选择 ShipAny",
-        "label": "产品优势",
-        "description": "你获得一切 AI 创业所需——从开箱即用的模板到专业技术支持。",
+        "title": "为何选择 panShare",
+        "label": "平台优势",
+        "description": "我们致力于提供最好的网盘资源分享体验。",
         "items": [
           {
-            "title": "全栈解决方案",
-            "description": "基于 Next.js，集成认证、支付、AI，一站式开箱即用。",
-            "icon": "RiNextjsFill",
-            "image": {
-              "src": "/imgs/features/user-billing.png",
-              "alt": "benefits"
-            }
+            "title": "资源丰富",
+            "description": "汇聚来自用户分享的各类优质网盘资源，涵盖学习、工具、娱乐等多个领域。",
+            "icon": "RiArchiveLine"
           },
           {
-            "title": "丰富模板库",
-            "description": "多样的 AI SaaS 模板，点击即用，涵盖聊天、图像生成等多场景。",
-            "icon": "RiClapperboardAiLine",
-            "image": {
-              "src": "/imgs/features/admin-settings.png",
-              "alt": "benefits"
-            }
+            "title": "使用简单",
+            "description": "清晰直观的界面设计，无需注册即可浏览，登录后可提交和复制分享信息。",
+            "icon": "RiUserLine"
           },
           {
-            "title": "专属技术指导",
-            "description": "享受专属技术支持与开发者社区，为你的成功保驾护航。",
-            "icon": "RiCodeFill",
-            "image": {
-              "src": "/imgs/features/landing-page.png",
-              "alt": "benefits"
-            }
+            "title": "安全可靠",
+            "description": "所有分享内容经过审核，确保资源质量和安全性。",
+            "icon": "RiShieldCheckLine"
           }
         ]
       },
       "usage": {
         "block": "features-step",
         "id": "usage",
-        "title": "三步使用 ShipAny 极速上线",
-        "description": "只需三步，快速开启你的 AI SaaS 创业之路：",
-        "image": {
-          "src": "/imgs/features/1.png",
-          "alt": "usage"
-        },
-        "image_position": "left",
+        "title": "如何使用 panShare",
+        "description": "三步开始你的网盘资源之旅：",
         "text_align": "center",
         "items": [
           {
-            "title": "获取 ShipAny",
-            "description": "一次性购买 ShipAny，查收邮件获取代码与文档。",
-            "image": {
-              "src": "/imgs/features/5.png",
-              "alt": "usage"
-            }
+            "title": "浏览发现",
+            "description": "在首页浏览各类网盘分享资源，使用搜索和筛选找到你需要的内容。"
           },
           {
-            "title": "启动你的项目",
-            "description": "阅读说明文档，克隆 ShipAny 代码，开始开发你的 AI SaaS 项目。",
-            "image": {
-              "src": "/imgs/features/6.png",
-              "alt": "usage"
-            }
+            "title": "登录账户",
+            "description": "注册或登录你的账户，解锁完整功能。"
           },
           {
-            "title": "个性化定制",
-            "description": "根据需求修改模板内容和数据，配置专属 AI 能力。",
-            "image": {
-              "src": "/imgs/features/7.png",
-              "alt": "usage"
-            }
+            "title": "复制使用",
+            "description": "一键复制分享链接和提取码，前往对应网盘获取资源。"
           },
           {
-            "title": "部署上线",
-            "description": "简单几步将你的项目推向生产环境，立刻为客户提供服务。",
-            "image": {
-              "src": "/imgs/features/8.png",
-              "alt": "usage"
-            }
+            "title": "分享贡献",
+            "description": "拥有优质资源？提交分享，让更多人受益。"
           }
         ],
         "className": "bg-muted"
       },
       "features": {
         "id": "features",
-        "title": "ShipAny 核心功能",
-        "description": "一切你需要的工具，助力 AI SaaS 项目高效上线。",
+        "title": "平台特色功能",
+        "description": "为网盘资源分享而设计的实用功能。",
         "items": [
           {
-            "title": "Next.js 项目模板",
-            "description": "生产就绪、支持 SEO 与多语言的 Next.js 脚手架。",
-            "icon": "RiNextjsFill"
+            "title": "多网盘支持",
+            "description": "支持百度、阿里、夸克、迅雷、115等主流网盘平台。",
+            "icon": "RiCloudLine"
           },
           {
-            "title": "身份认证与支付",
-            "description": "集成谷歌 OAuth、一键登录，以及 Stripe 支付。",
-            "icon": "RiKey2Fill"
+            "title": "智能搜索",
+            "description": "强大的搜索功能，快速定位你需要的资源。",
+            "icon": "RiSearchLine"
           },
           {
-            "title": "数据基础设施",
-            "description": "内置 Supabase，稳定可靠的数据存储。",
-            "icon": "RiDatabase2Line"
+            "title": "分类筛选",
+            "description": "按网盘类型筛选，精准找到目标资源。",
+            "icon": "RiFilterLine"
           },
           {
-            "title": "一键部署",
-            "description": "自动化部署到 Vercel 或 Cloudflare，极速上线。",
-            "icon": "RiCloudy2Fill"
+            "title": "一键复制",
+            "description": "链接和提取码一键复制，使用更便捷。",
+            "icon": "RiFileCopyLine"
           },
           {
-            "title": "商业分析",
-            "description": "集成 Google Analytics、Search Console，助力业务增长。",
-            "icon": "RiBarChart2Line"
+            "title": "过期提醒",
+            "description": "清晰标注资源过期时间，避免获取失效资源。",
+            "icon": "RiTimeLine"
           },
           {
-            "title": "AI 原生基础设施",
-            "description": "预置 AI 集成、积分系统和 API 售卖能力。",
-            "icon": "RiRobot2Line"
+            "title": "用户提交",
+            "description": "用户可提交分享，经审核后展示，共建资源库。",
+            "icon": "RiUploadLine"
           }
         ]
       },
       "stats": {
         "id": "stats",
-        "title": "用户喜爱 ShipAny",
-        "description": "因其易用且上线飞快。",
+        "title": "平台数据",
+        "description": "持续增长的资源库和活跃社区。",
         "items": [
           {
-            "title": "999+",
-            "description": "位用户"
+            "title": "多种",
+            "description": "支持网盘类型"
           },
           {
-            "title": "200+",
-            "description": "组件块"
+            "title": "便捷",
+            "description": "一键复制使用"
           },
           {
-            "title": "50+",
-            "description": "专业模板"
+            "title": "免费",
+            "description": "浏览和使用"
           }
         ],
         "className": "bg-muted"
       },
-      "testimonials": {
-        "id": "testimonials",
-        "title": "用户对 ShipAny 的评价",
-        "description": "听听开发者与创始人用 ShipAny 快速上线 AI 创业项目的故事。",
-        "items": [
-          {
-            "name": "David Chen",
-            "role": "AIWallpaper.shop 创始人",
-            "quote": "ShipAny 为我们节省了数月开发时间。2 天上线 AI 壁纸业务，一周内就收到了第一笔付费订单！",
-            "image": {
-              "src": "/imgs/avatars/1.png",
-              "alt": "david"
-            }
-          },
-          {
-            "name": "Rachel Kim",
-            "role": "HeyBeauty.ai CTO",
-            "quote": "内置 AI 基础设施颠覆了开发体验，无需担心架构，只需专注核心功能，极快落地。",
-            "image": {
-              "src": "/imgs/avatars/2.png",
-              "alt": "rachel"
-            }
-          },
-          {
-            "name": "Marcus Thompson",
-            "role": "独立开发者",
-            "quote": "作为独立开发者，ShipAny 满足了全部需求——认证、支付、AI 集成、美观界面，一个周末上线 SaaS！",
-            "image": {
-              "src": "/imgs/avatars/3.png",
-              "alt": "marcus"
-            }
-          },
-          {
-            "name": "Sofia Garcia",
-            "role": "Melodisco CEO",
-            "quote": "模板高度可定制且生产级。我们几小时内搭建出了 AI 音乐平台，上市周期大大缩短！",
-            "image": {
-              "src": "/imgs/avatars/4.png",
-              "alt": "sofia"
-            }
-          },
-          {
-            "name": "James Wilson",
-            "role": "GPTs.works 技术负责人",
-            "quote": "ShipAny 基础设施极其稳定。我们从 0 到 1 万用户，无需关心后端维护，是最棒的 AI 创业投资。",
-            "image": {
-              "src": "/imgs/avatars/5.png",
-              "alt": "james"
-            }
-          },
-          {
-            "name": "Anna Zhang",
-            "role": "创业者",
-            "quote": "从想法到上线，仅用 3 天！ShipAny 模板和部署工具让我们极快验证 AI 商业创意。",
-            "image": {
-              "src": "/imgs/avatars/6.png",
-              "alt": "anna"
-            }
-          }
-        ]
-      },
       "faq": {
         "id": "faq",
-        "title": "关于 ShipAny 的常见问题",
-        "description": "还有其他问题？欢迎加入 Discord 或发邮件联系我们。",
+        "title": "常见问题",
+        "description": "关于 panShare 的常见问题解答。",
         "items": [
           {
-            "question": "ShipAny 是什么？怎么帮到我？",
-            "answer": "ShipAny 是专为 AI SaaS 创业设计的 NextJS 全套脚手架，内含开箱即用的模板、基础设施搭建和部署工具，让你数小时内上线 AI 产品。"
+            "question": "panShare 是什么？",
+            "answer": "panShare 是一个网盘资源分享平台，用户可以在这里发现和分享来自各大网盘平台的资源链接。我们支持百度网盘、阿里云盘、夸克网盘等主流平台。"
           },
           {
-            "question": "使用 ShipAny 需要很高的技术水平吗？",
-            "answer": "有基础编程知识即可上手。ShipAny 面向开发者友好，详细文档和模板让初学者也能轻松起步，不需深厚 AI 或云计算背景。"
+            "question": "使用 panShare 需要付费吗？",
+            "answer": "不需要。浏览和使用 panShare 上的资源分享信息完全免费。我们致力于为用户提供便捷的资源发现体验。"
           },
           {
-            "question": "ShipAny 支持哪些类型的 AI SaaS 项目？",
-            "answer": "ShipAny 支持内容生成、数据分析、AI 聊天机器人、图片/内容生成器等多种主流 AI 应用场景。"
+            "question": "如何提交我的分享？",
+            "answer": "登录账户后，点击「提交分享」按钮，填写分享标题、描述、链接和提取码等信息即可提交。提交的内容需要经过审核后才会展示。"
           },
           {
-            "question": "用 ShipAny 一般多久能上线？",
-            "answer": "借助 ShipAny，可在数小时内拿到产品原型并上线生产环境，预配置的一键部署大幅缩短开发周期。"
+            "question": "支持哪些网盘平台？",
+            "answer": "目前支持百度网盘、阿里云盘、夸克网盘、迅雷网盘、115网盘以及其他自定义类型。我们会持续添加更多平台支持。"
           },
           {
-            "question": "ShipAny 的基础设施包括哪些内容？",
-            "answer": "包含认证、数据库、API 集成、支付、云端部署等全栈解决方案，全部遵循业界最佳实践预配置。"
+            "question": "分享的资源会过期吗？",
+            "answer": "部分网盘分享链接可能设有过期时间。我们会在资源卡片上清晰标注过期时间，帮助你判断资源是否仍然有效。"
           },
           {
-            "question": "模板是否支持定制自己的品牌？",
-            "answer": "当然支持！所有模板均可自定义设计、功能和品牌，既保持基础架构稳定，又能满足个性扩展需求。"
+            "question": "如何保证分享内容的质量？",
+            "answer": "所有用户提交的分享都需要经过管理员审核，确保内容的质量和合规性。我们也欢迎用户反馈问题资源。"
           }
         ]
       },
       "cta": {
         "id": "cta",
-        "title": "发布你的第一个 AI SaaS 项目",
-        "description": "从这里出发，用 ShipAny 极速交付。",
+        "title": "开始探索网盘资源",
+        "description": "发现并分享优质网盘资源，就在 panShare。",
         "buttons": [
           {
-            "title": "获取 ShipAny",
-            "url": "https://shipany.ai",
-            "target": "_blank",
-            "icon": "Zap"
+            "title": "浏览资源",
+            "url": "/",
+            "target": "_self",
+            "icon": "Search"
           },
           {
-            "title": "阅读文档",
-            "url": "/docs",
-            "target": "_blank",
+            "title": "提交分享",
+            "url": "/submit",
+            "target": "_self",
             "variant": "outline",
-            "icon": "BookOpenText"
+            "icon": "Share2"
           }
         ],
-        "className": "bg-muted"
-      },
-      "subscribe": {
-        "id": "subscribe",
-        "title": "订阅我们的邮件通知",
-        "description": "获取 ShipAny 最新资讯与产品动态。",
-        "submit": {
-          "input": {
-            "placeholder": "输入邮箱"
-          },
-          "button": {
-            "title": "订阅"
-          },
-          "action": "/api/subscribe"
-        },
         "className": "bg-muted"
       }
     }
