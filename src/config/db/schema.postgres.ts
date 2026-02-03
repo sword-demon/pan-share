@@ -555,3 +555,35 @@ export const chatMessage = table(
     index('idx_chat_message_user_id').on(table.userId, table.status),
   ]
 );
+
+// Pan Share - 网盘分享表
+export const panShare = table(
+  'pan_share',
+  {
+    id: text('id').primaryKey(),
+    title: text('title').notNull(), // 标题
+    description: text('description'), // 描述
+    coverImage: text('cover_image'), // 封面图 URL
+    diskType: text('disk_type').notNull(), // 网盘类型: baidu, aliyun, quark, xunlei, 115, other
+    shareUrl: text('share_url').notNull(), // 分享链接
+    shareCode: text('share_code'), // 提取码
+    expiredAt: timestamp('expired_at'), // 过期时间
+    status: text('status').notNull().default('pending'), // pending, published, rejected
+    userId: text('user_id').references(() => user.id, { onDelete: 'set null' }), // 提交者（可选，允许管理员直接添加）
+    createdAt: timestamp('created_at').defaultNow().notNull(),
+    updatedAt: timestamp('updated_at')
+      .$onUpdate(() => /* @__PURE__ */ new Date())
+      .notNull(),
+    deletedAt: timestamp('deleted_at'),
+  },
+  (table) => [
+    // Query pan shares by status (most common for listing)
+    index('idx_pan_share_status').on(table.status),
+    // Query pan shares by disk type
+    index('idx_pan_share_disk_type').on(table.diskType),
+    // Query user's pan shares
+    index('idx_pan_share_user_id').on(table.userId),
+    // Order by creation time
+    index('idx_pan_share_created_at').on(table.createdAt),
+  ]
+);

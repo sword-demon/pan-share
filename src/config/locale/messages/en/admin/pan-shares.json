@@ -1,0 +1,74 @@
+{
+  "fields": {
+    "id": "ID",
+    "title": "Title",
+    "description": "Description",
+    "cover_image": "Cover Image",
+    "disk_type": "Disk Type",
+    "share_url": "Share URL",
+    "share_code": "Share Code",
+    "expired_at": "Expired At",
+    "status": "Status",
+    "user_id": "Submitter",
+    "created_at": "Created At",
+    "updated_at": "Updated At"
+  },
+  "disk_types": {
+    "baidu": "Baidu Pan",
+    "aliyun": "Aliyun Drive",
+    "quark": "Quark Drive",
+    "xunlei": "Xunlei Drive",
+    "115": "115 Drive",
+    "other": "Other"
+  },
+  "statuses": {
+    "pending": "Pending",
+    "published": "Published",
+    "rejected": "Rejected",
+    "archived": "Archived"
+  },
+  "list": {
+    "title": "Pan Shares",
+    "crumbs": {
+      "admin": "Admin",
+      "pan_shares": "Pan Shares"
+    },
+    "buttons": {
+      "add": "Add Share",
+      "edit": "Edit",
+      "approve": "Approve",
+      "reject": "Reject",
+      "delete": "Delete"
+    },
+    "filter": {
+      "all": "All",
+      "pending": "Pending",
+      "published": "Published",
+      "rejected": "Rejected"
+    }
+  },
+  "add": {
+    "title": "Add Share",
+    "crumbs": {
+      "admin": "Admin",
+      "pan_shares": "Pan Shares",
+      "add": "Add"
+    },
+    "buttons": {
+      "submit": "Submit"
+    }
+  },
+  "edit": {
+    "title": "Edit Share",
+    "crumbs": {
+      "admin": "Admin",
+      "pan_shares": "Pan Shares",
+      "edit": "Edit"
+    },
+    "buttons": {
+      "submit": "Save",
+      "approve": "Approve",
+      "reject": "Reject"
+    }
+  }
+}

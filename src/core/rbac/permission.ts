@@ -60,6 +60,11 @@ export const PERMISSIONS = {
   AITASKS_READ: 'admin.ai-tasks.read',
   AITASKS_WRITE: 'admin.ai-tasks.write',
   AITASKS_DELETE: 'admin.ai-tasks.delete',
+
+  // Pan Shares (网盘分享)
+  PAN_SHARES_READ: 'admin.pan-shares.read',
+  PAN_SHARES_WRITE: 'admin.pan-shares.write',
+  PAN_SHARES_DELETE: 'admin.pan-shares.delete',
 } as const;
 
 /**

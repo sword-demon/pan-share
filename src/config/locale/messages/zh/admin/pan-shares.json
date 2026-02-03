@@ -1,0 +1,74 @@
+{
+  "fields": {
+    "id": "ID",
+    "title": "标题",
+    "description": "描述",
+    "cover_image": "封面图",
+    "disk_type": "网盘类型",
+    "share_url": "分享链接",
+    "share_code": "提取码",
+    "expired_at": "过期时间",
+    "status": "状态",
+    "user_id": "提交者",
+    "created_at": "创建时间",
+    "updated_at": "更新时间"
+  },
+  "disk_types": {
+    "baidu": "百度网盘",
+    "aliyun": "阿里云盘",
+    "quark": "夸克网盘",
+    "xunlei": "迅雷网盘",
+    "115": "115网盘",
+    "other": "其他"
+  },
+  "statuses": {
+    "pending": "待审核",
+    "published": "已发布",
+    "rejected": "已拒绝",
+    "archived": "已归档"
+  },
+  "list": {
+    "title": "分享管理",
+    "crumbs": {
+      "admin": "管理后台",
+      "pan_shares": "分享管理"
+    },
+    "buttons": {
+      "add": "添加分享",
+      "edit": "编辑",
+      "approve": "通过",
+      "reject": "拒绝",
+      "delete": "删除"
+    },
+    "filter": {
+      "all": "全部",
+      "pending": "待审核",
+      "published": "已发布",
+      "rejected": "已拒绝"
+    }
+  },
+  "add": {
+    "title": "添加分享",
+    "crumbs": {
+      "admin": "管理后台",
+      "pan_shares": "分享管理",
+      "add": "添加"
+    },
+    "buttons": {
+      "submit": "提交"
+    }
+  },
+  "edit": {
+    "title": "编辑分享",
+    "crumbs": {
+      "admin": "管理后台",
+      "pan_shares": "分享管理",
+      "edit": "编辑"
+    },
+    "buttons": {
+      "submit": "保存",
+      "approve": "通过审核",
+      "reject": "拒绝"
+    }
+  }
+}
