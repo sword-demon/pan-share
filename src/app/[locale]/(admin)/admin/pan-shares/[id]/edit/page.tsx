@@ -5,11 +5,9 @@ import { Empty } from '@/shared/blocks/common';
 import { Header, Main, MainHeader } from '@/shared/blocks/dashboard';
 import { FormCard } from '@/shared/blocks/form';
 import {
-  approvePanShare,
   DiskType,
   findPanShareById,
   PanShareStatus,
-  rejectPanShare,
   updatePanShare,
   UpdatePanShare,
 } from '@/shared/models/pan_share';
@@ -177,64 +175,6 @@ export default async function PanShareEditPage({
         };
       },
     },
-    extra_buttons: [
-      ...(panShare.status === PanShareStatus.PENDING
-        ? [
-            {
-              id: 'approve',
-              title: t('edit.buttons.approve'),
-              variant: 'default' as const,
-              handler: async (data: FormData, passby: any) => {
-                'use server';
-
-                const user = await getUserInfo();
-                if (!user) {
-                  throw new Error('no auth');
-                }
-
-                const { panShare } = passby;
-                if (!panShare) {
-                  throw new Error('pan share not found');
-                }
-
-                await approvePanShare(panShare.id);
-
-                return {
-                  status: 'success',
-                  message: 'Pan share approved',
-                  redirect_url: '/admin/pan-shares',
-                };
-              },
-            },
-            {
-              id: 'reject',
-              title: t('edit.buttons.reject'),
-              variant: 'destructive' as const,
-              handler: async (data: FormData, passby: any) => {
-                'use server';
-
-                const user = await getUserInfo();
-                if (!user) {
-                  throw new Error('no auth');
-                }
-
-                const { panShare } = passby;
-                if (!panShare) {
-                  throw new Error('pan share not found');
-                }
-
-                await rejectPanShare(panShare.id);
-
-                return {
-                  status: 'success',
-                  message: 'Pan share rejected',
-                  redirect_url: '/admin/pan-shares',
-                };
-              },
-            },
-          ]
-        : []),
-    ],
   };
 
   return (

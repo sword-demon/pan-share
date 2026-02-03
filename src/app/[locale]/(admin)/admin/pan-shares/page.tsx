@@ -149,6 +149,7 @@ export default async function PanSharesPage({
 
   // Search configuration
   const searchConfig = {
+    name: 'search',
     placeholder: 'Search by title or description...',
     param: 'search',
     value: search || '',
@@ -192,7 +193,6 @@ export default async function PanSharesPage({
           actions={actions}
           search={searchConfig}
           tabs={filterTabs}
-          activeTab={status || 'all'}
         />
         <TableCard table={table} />
       </Main>

@@ -51,7 +51,7 @@ export function ShareCard({
 }: ShareCardProps) {
   const [copied, setCopied] = useState<'url' | 'code' | null>(null);
 
-  const isExpired = share.expiredAt && new Date(share.expiredAt) < new Date();
+  const isExpired = share.expiredAt ? new Date(share.expiredAt) < new Date() : false;
 
   const handleCopy = async (type: 'url' | 'code') => {
     if (!isLoggedIn) {
