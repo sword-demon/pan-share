@@ -17,6 +17,7 @@ import {
   PanShareStatus,
 } from '@/shared/models/pan_share';
 import { getSignUser } from '@/shared/models/user';
+
 import { SubmitForm } from './submit-form';
 
 export default async function SubmitPage({
@@ -44,6 +45,7 @@ export default async function SubmitPage({
 
     const title = formData.get('title') as string;
     const description = formData.get('description') as string;
+    const content = formData.get('content') as string;
     const coverImage = formData.get('coverImage') as string;
     const diskType = formData.get('diskType') as DiskType;
     const shareUrl = formData.get('shareUrl') as string;
@@ -61,6 +63,7 @@ export default async function SubmitPage({
       id: getUuid(),
       title: title.trim(),
       description: description?.trim() || null,
+      content: content?.trim() || null,
       coverImage: coverImage?.trim() || null,
       diskType: diskType || DiskType.BAIDU,
       shareUrl: shareUrl.trim(),
@@ -87,7 +90,7 @@ export default async function SubmitPage({
   );
 
   return (
-    <div className="min-h-screen bg-muted/30 pt-24 pb-12">
+    <div className="bg-muted/30 min-h-screen pt-24 pb-12">
       <div className="container mx-auto px-4">
         <Card className="mx-auto max-w-2xl">
           <CardHeader>

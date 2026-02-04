@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import { toast } from 'sonner';
 
+import { MarkdownContent } from '@/shared/blocks/common/markdown-content';
 import { Badge } from '@/shared/components/ui/badge';
 import { Button } from '@/shared/components/ui/button';
 import {
@@ -41,6 +42,7 @@ interface ShareData {
   id: string;
   title: string;
   description: string | null;
+  content: string | null;
   coverImage: string | null;
   diskType: string;
   expiredAt: string | null;
@@ -183,7 +185,7 @@ export function ShareDetail({ share, isLoggedIn }: ShareDetailProps) {
                   src={share.coverImage}
                   alt={share.title}
                   fill
-                  className="object-cover"
+                  className="object-contain"
                   priority
                   unoptimized
                 />
@@ -212,6 +214,20 @@ export function ShareDetail({ share, isLoggedIn }: ShareDetailProps) {
                 </p>
               )}
             </div>
+
+            {/* Markdown 富文本正文 */}
+            {share.content && (
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg">详细说明</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="markdown-body prose prose-sm dark:prose-invert max-w-none">
+                    <MarkdownContent content={share.content} />
+                  </div>
+                </CardContent>
+              </Card>
+            )}
 
             {/* Info cards */}
             <div className="grid gap-4 sm:grid-cols-2">

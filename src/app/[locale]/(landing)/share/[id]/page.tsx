@@ -45,6 +45,7 @@ export default async function ShareDetailPage({ params }: Props) {
     id: share.id,
     title: share.title,
     description: share.description,
+    content: share.content,
     coverImage: share.coverImage,
     diskType: share.diskType,
     expiredAt: share.expiredAt?.toISOString() || null,
