@@ -1,0 +1,185 @@
+{
+  "version": "1.0.0",
+  "generatedAt": "2026-02-04T23:36:01+08:00",
+  "projectName": "pan-share",
+  "projectSummary": "AI SaaS Boilerplate Template with Pan Share functionality",
+  "projectPath": "/Volumes/MOVESPEED/ai-coding/pan-share",
+  "ignorePatterns": [
+    "node_modules/**",
+    ".next/**",
+    "dist/**",
+    "build/**",
+    "*.log",
+    "*.lock",
+    ".git/**"
+  ],
+  "modules": {
+    "root": {
+      "claudeMd": "/Volumes/MOVESPEED/ai-coding/pan-share/CLAUDE.md",
+      "description": "项目根目录文档",
+      "type": "root"
+    },
+    "shared/models": {
+      "path": "/Volumes/MOVESPEED/ai-coding/pan-share/src/shared/models",
+      "claudeMd": "/Volumes/MOVESPEED/ai-coding/pan-share/src/shared/models/CLAUDE.md",
+      "type": "layer",
+      "description": "数据模型层 (DAL)",
+      "models": [
+        "ai_task", "apikey", "chat", "chat_message", "config",
+        "credit", "order", "subscription", "taxonomy", "user", "pan_share"
+      ]
+    },
+    "shared/models/pan_share": {
+      "path": "/Volumes/MOVESPEED/ai-coding/pan-share/src/shared/models/pan_share.ts",
+      "claudeMd": "/Volumes/MOVESPEED/ai-coding/pan-share/src/shared/models/pan_share.ts",
+      "type": "model",
+      "description": "网盘分享数据模型",
+      "table": "pan_share",
+      "functions": [
+        "addPanShare", "updatePanShare", "deletePanShare",
+        "findPanShareById", "getPanShares", "getPanSharesCount",
+        "getPublishedPanShares", "getPublishedPanSharesCount",
+        "getUserPanShares", "getUserPanSharesCount",
+        "approvePanShare", "rejectPanShare"
+      ]
+    },
+    "api/pan-shares": {
+      "path": "/Volumes/MOVESPEED/ai-coding/pan-share/src/app/api/pan-shares",
+      "claudeMd": "/Volumes/MOVESPEED/ai-coding/pan-share/src/app/api/pan-shares/CLAUDE.md",
+      "type": "api",
+      "description": "网盘分享 API 路由",
+      "routes": [
+        {
+          "method": "GET",
+          "path": "/api/pan-shares",
+          "auth": false,
+          "description": "获取已发布分享列表"
+        },
+        {
+          "method": "POST",
+          "path": "/api/pan-shares",
+          "auth": true,
+          "description": "提交新分享"
+        },
+        {
+          "method": "GET",
+          "path": "/api/pan-shares/mine",
+          "auth": true,
+          "description": "获取当前用户的分享"
+        },
+        {
+          "method": "GET",
+          "path": "/api/pan-shares/[id]",
+          "auth": false,
+          "description": "获取单个分享详情"
+        },
+        {
+          "method": "PUT",
+          "path": "/api/pan-shares/[id]",
+          "auth": true,
+          "description": "更新分享"
+        },
+        {
+          "method": "DELETE",
+          "path": "/api/pan-shares/[id]",
+          "auth": true,
+          "description": "删除分享"
+        }
+      ]
+    }
+  },
+  "coreModules": {
+    "auth": {
+      "path": "/Volumes/MOVESPEED/ai-coding/pan-share/src/core/auth",
+      "description": "用户认证模块 (Better-Auth)",
+      "type": "core"
+    },
+    "db": {
+      "path": "/Volumes/MOVESPEED/ai-coding/pan-share/src/core/db",
+      "description": "数据库连接与管理",
+      "type": "core"
+    },
+    "rbac": {
+      "path": "/Volumes/MOVESPEED/ai-coding/pan-share/src/core/rbac",
+      "description": "基于角色的权限控制",
+      "type": "core"
+    },
+    "i18n": {
+      "path": "/Volumes/MOVESPEED/ai-coding/pan-share/src/core/i18n",
+      "description": "国际化配置",
+      "type": "core"
+    },
+    "theme": {
+      "path": "/Volumes/MOVESPEED/ai-coding/pan-share/src/core/theme",
+      "description": "主题系统",
+      "type": "core"
+    }
+  },
+  "extensions": {
+    "ai": {
+      "path": "/Volumes/MOVESPEED/ai-coding/pan-share/src/extensions/ai",
+      "description": "AI 服务集成层",
+      "providers": ["replicate", "gemini", "fal", "kie"]
+    },
+    "payment": {
+      "path": "/Volumes/MOVESPEED/ai-coding/pan-share/src/extensions/payment",
+      "description": "支付网关集成",
+      "providers": ["stripe", "paypal", "creem"]
+    },
+    "storage": {
+      "path": "/Volumes/MOVESPEED/ai-coding/pan-share/src/extensions/storage",
+      "description": "文件存储服务"
+    },
+    "email": {
+      "path": "/Volumes/MOVESPEED/ai-coding/pan-share/src/extensions/email",
+      "description": "邮件服务",
+      "providers": ["resend"]
+    }
+  },
+  "database": {
+    "provider": "drizzle-orm",
+    "supportedDatabases": ["postgresql", "mysql", "sqlite"],
+    "tables": [
+      "user", "session", "account", "verification",
+      "config", "taxonomy", "post",
+      "order", "subscription", "credit",
+      "apikey", "role", "permission", "role_permission", "user_role",
+      "ai_task", "chat", "chat_message",
+      "pan_share"
+    ]
+  },
+  "aiProviders": {
+    "image": ["replicate", "fal"],
+    "video": ["replicate", "fal"],
+    "music": ["replicate"],
+    "chat": ["gemini"]
+  },
+  "coverage": {
+    "totalFiles": "~300+",
+    "scannedFiles": 95,
+    "coveragePercentage": "~32%",
+    "modulesIdentified": 20,
+    "modulesDocumented": 5,
+    "truncated": false,
+    "reason": null,
+    "gaps": [
+      {
+        "path": "src/app/[locale]/(landing)",
+        "reason": "页面组件较多，建议按需扫描"
+      },
+      {
+        "path": "src/shared/blocks",
+        "reason": "UI 组件库，建议按需扫描"
+      },
+      {
+        "path": "src/shared/services",
+        "reason": "服务层，建议按需扫描"
+      }
+    ]
+  },
+  "recommendedNextSteps": [
+    "扫描 src/shared/blocks/pan-share 组件实现",
+    "扫描 src/app/[locale]/(landing) 页面实现",
+    "扫描 src/shared/services/payment 支付服务"
+  ]
+}
