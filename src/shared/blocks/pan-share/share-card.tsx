@@ -210,27 +210,29 @@ export function ShareCard({
           </div>
         </CardContent>
 
-        <CardFooter className="flex gap-2 pt-2">
+        <CardFooter className="flex min-w-0 gap-2 pt-2">
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button
                   variant="default"
                   size="sm"
-                  className="flex-1"
+                  className="min-w-0 flex-1"
                   onClick={handleCopyAll}
                   disabled={isExpired || isLoading}
                 >
                   {isLoading ? (
-                    <Loader2 className="mr-1 h-4 w-4 animate-spin" />
+                    <Loader2 className="mr-1 h-4 w-4 shrink-0 animate-spin" />
                   ) : copied ? (
-                    <Check className="mr-1 h-4 w-4" />
+                    <Check className="mr-1 h-4 w-4 shrink-0" />
                   ) : isLoggedIn ? (
-                    <Copy className="mr-1 h-4 w-4" />
+                    <Copy className="mr-1 h-4 w-4 shrink-0" />
                   ) : (
-                    <Lock className="mr-1 h-4 w-4" />
+                    <Lock className="mr-1 h-4 w-4 shrink-0" />
                   )}
-                  {copied ? '已复制' : isLoggedIn ? '复制链接' : '登录后复制'}
+                  <span className="truncate">
+                    {copied ? '已复制' : isLoggedIn ? '复制链接' : '登录后复制'}
+                  </span>
                 </Button>
               </TooltipTrigger>
               <TooltipContent>
@@ -239,19 +241,13 @@ export function ShareCard({
             </Tooltip>
           </TooltipProvider>
 
-          {share.hasShareCode && (
-            <Badge variant="secondary" className="h-8 px-2">
-              有提取码
-            </Badge>
-          )}
-
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="h-8 w-8"
+                  className="h-8 w-8 shrink-0"
                   onClick={handleShareLink}
                   disabled={isExpired}
                 >
@@ -274,7 +270,7 @@ export function ShareCard({
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="h-8 w-8"
+                  className="h-8 w-8 shrink-0"
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
