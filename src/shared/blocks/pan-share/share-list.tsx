@@ -1,18 +1,10 @@
 'use client';
 
-import { useRouter, useSearchParams } from 'next/navigation';
 import { useState, useTransition } from 'react';
-import { Search, Filter, Loader2 } from 'lucide-react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { Filter, Loader2, Search } from 'lucide-react';
 
-import { Input } from '@/shared/components/ui/input';
 import { Button } from '@/shared/components/ui/button';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/shared/components/ui/select';
 import {
   Dialog,
   DialogContent,
@@ -20,12 +12,20 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/shared/components/ui/dialog';
+import { Input } from '@/shared/components/ui/input';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/shared/components/ui/select';
+import { DiskType, DiskTypeLabels } from '@/shared/types/pan_share';
 
-import { DiskType, DiskTypeLabels, PanShareData } from '@/shared/types/pan_share';
-import { ShareCard } from './share-card';
+import { ShareCard, ShareCardData } from './share-card';
 
 interface ShareListProps {
-  shares: PanShareData[];
+  shares: ShareCardData[];
   total: number;
   page: number;
   limit: number;
@@ -97,8 +97,8 @@ export function ShareList({
       {/* Search and Filter */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <form onSubmit={handleSearch} className="flex flex-1 gap-2">
-          <div className="relative flex-1 max-w-md">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+          <div className="relative max-w-md flex-1">
+            <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
             <Input
               type="search"
               placeholder="搜索分享..."
@@ -108,16 +108,12 @@ export function ShareList({
             />
           </div>
           <Button type="submit" variant="secondary" disabled={isPending}>
-            {isPending ? (
-              <Loader2 className="h-4 w-4 animate-spin" />
-            ) : (
-              '搜索'
-            )}
+            {isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : '搜索'}
           </Button>
         </form>
 
         <div className="flex items-center gap-2">
-          <Filter className="h-4 w-4 text-muted-foreground" />
+          <Filter className="text-muted-foreground h-4 w-4" />
           <Select value={diskType} onValueChange={handleDiskTypeChange}>
             <SelectTrigger className="w-[140px]">
               <SelectValue placeholder="网盘类型" />
@@ -137,7 +133,7 @@ export function ShareList({
       {/* Loading State */}
       {isPending && (
         <div className="flex items-center justify-center py-12">
-          <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+          <Loader2 className="text-muted-foreground h-8 w-8 animate-spin" />
         </div>
       )}
 
@@ -158,7 +154,7 @@ export function ShareList({
       {/* Empty State */}
       {!isPending && shares.length === 0 && (
         <div className="flex flex-col items-center justify-center py-12 text-center">
-          <div className="text-6xl mb-4">📭</div>
+          <div className="mb-4 text-6xl">📭</div>
           <h3 className="text-lg font-medium">暂无分享</h3>
           <p className="text-muted-foreground">
             {search || diskType !== 'all'
@@ -179,7 +175,7 @@ export function ShareList({
           >
             上一页
           </Button>
-          <span className="text-sm text-muted-foreground">
+          <span className="text-muted-foreground text-sm">
             {page} / {totalPages}
           </span>
           <Button
@@ -202,7 +198,7 @@ export function ShareList({
               登录后即可复制分享链接和提取码
             </DialogDescription>
           </DialogHeader>
-          <div className="flex gap-2 justify-end">
+          <div className="flex justify-end gap-2">
             <Button variant="outline" onClick={() => setShowLoginDialog(false)}>
               取消
             </Button>

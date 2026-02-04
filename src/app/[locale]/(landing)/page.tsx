@@ -1,6 +1,6 @@
-import { setRequestLocale } from 'next-intl/server';
-import { Plus } from 'lucide-react';
 import Link from 'next/link';
+import { Plus } from 'lucide-react';
+import { setRequestLocale } from 'next-intl/server';
 
 import { ShareList } from '@/shared/blocks/pan-share';
 import { Button } from '@/shared/components/ui/button';
@@ -27,11 +27,7 @@ export default async function LandingPage({
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const {
-    page: pageStr,
-    search,
-    diskType,
-  } = await searchParams;
+  const { page: pageStr, search, diskType } = await searchParams;
 
   const page = parseInt(pageStr || '1', 10);
   const limit = 12;
@@ -41,7 +37,7 @@ export default async function LandingPage({
   const isLoggedIn = !!user;
 
   // Get shares
-  const [shares, total] = await Promise.all([
+  const [rawShares, total] = await Promise.all([
     getPublishedPanShares({
       search,
       diskType: diskType as DiskType | undefined,
@@ -54,16 +50,29 @@ export default async function LandingPage({
     }),
   ]);
 
+  // Transform shares to remove sensitive data (shareUrl, shareCode)
+  // This prevents crawlers from getting the actual links
+  const shares = rawShares.map((share) => ({
+    id: share.id,
+    title: share.title,
+    description: share.description,
+    coverImage: share.coverImage,
+    diskType: share.diskType,
+    expiredAt: share.expiredAt?.toISOString() || null,
+    createdAt: share.createdAt.toISOString(),
+    hasShareCode: !!share.shareCode,
+  }));
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-b from-background to-muted/30 py-12 md:py-20">
+      <section className="from-background to-muted/30 bg-gradient-to-b py-12 md:py-20">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-3xl text-center">
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
               panShare
             </h1>
-            <p className="mb-8 text-lg text-muted-foreground md:text-xl">
+            <p className="text-muted-foreground mb-8 text-lg md:text-xl">
               发现和分享优质网盘资源
             </p>
             {isLoggedIn && (

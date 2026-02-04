@@ -1,9 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { Copy, Check, Clock, ExternalLink } from 'lucide-react';
+import Link from 'next/link';
+import { Check, Clock, Copy, ExternalLink, Loader2, Lock } from 'lucide-react';
+import { toast } from 'sonner';
 
-import { cn } from '@/shared/lib/utils';
 import { Badge } from '@/shared/components/ui/badge';
 import { Button } from '@/shared/components/ui/button';
 import {
@@ -20,13 +21,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/shared/components/ui/tooltip';
-import { toast } from 'sonner';
-
-import {
-  DiskType,
-  DiskTypeLabels,
-  PanShareData,
-} from '@/shared/types/pan_share';
+import { cn } from '@/shared/lib/utils';
+import { DiskType, DiskTypeLabels } from '@/shared/types/pan_share';
 
 // Disk type colors
 const diskTypeColors: Record<DiskType, string> = {
@@ -38,8 +34,20 @@ const diskTypeColors: Record<DiskType, string> = {
   [DiskType.OTHER]: 'bg-gray-500',
 };
 
+// Card data interface (without sensitive info)
+export interface ShareCardData {
+  id: string;
+  title: string;
+  description: string | null;
+  coverImage: string | null;
+  diskType: string;
+  expiredAt: string | null;
+  createdAt: string;
+  hasShareCode: boolean;
+}
+
 interface ShareCardProps {
-  share: PanShareData;
+  share: ShareCardData;
   isLoggedIn: boolean;
   onLoginRequired?: () => void;
 }
@@ -49,46 +57,53 @@ export function ShareCard({
   isLoggedIn,
   onLoginRequired,
 }: ShareCardProps) {
-  const [copied, setCopied] = useState<'url' | 'code' | null>(null);
+  const [copied, setCopied] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const isExpired = share.expiredAt ? new Date(share.expiredAt) < new Date() : false;
+  const isExpired = share.expiredAt
+    ? new Date(share.expiredAt) < new Date()
+    : false;
 
-  const handleCopy = async (type: 'url' | 'code') => {
+  // Fetch share info from API and copy
+  const handleCopyAll = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
     if (!isLoggedIn) {
       onLoginRequired?.();
       return;
     }
 
-    const text = type === 'url' ? share.shareUrl : share.shareCode;
-    if (!text) return;
-
+    setIsLoading(true);
     try {
+      const response = await fetch(`/api/pan-shares/${share.id}/secret`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        if (response.status === 401) {
+          onLoginRequired?.();
+          return;
+        }
+        throw new Error('获取分享信息失败');
+      }
+
+      const data = await response.json();
+      const text = data.shareCode
+        ? `${data.shareUrl}\n提取码: ${data.shareCode}`
+        : data.shareUrl;
+
       await navigator.clipboard.writeText(text);
-      setCopied(type);
-      toast.success(type === 'url' ? '链接已复制' : '提取码已复制');
-      setTimeout(() => setCopied(null), 2000);
-    } catch {
-      toast.error('复制失败');
-    }
-  };
-
-  const handleCopyAll = async () => {
-    if (!isLoggedIn) {
-      onLoginRequired?.();
-      return;
-    }
-
-    const text = share.shareCode
-      ? `${share.shareUrl}\n提取码: ${share.shareCode}`
-      : share.shareUrl;
-
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopied('url');
+      setCopied(true);
       toast.success('已复制分享信息');
-      setTimeout(() => setCopied(null), 2000);
+      setTimeout(() => setCopied(false), 2000);
     } catch {
-      toast.error('复制失败');
+      toast.error('复制失败，请稍后重试');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -102,148 +117,133 @@ export function ShareCard({
   };
 
   return (
-    <Card
-      className={cn(
-        'group relative overflow-hidden transition-all hover:shadow-lg',
-        isExpired && 'opacity-60'
-      )}
-    >
-      {/* Cover Image */}
-      <div className="relative aspect-video w-full overflow-hidden bg-muted">
-        {share.coverImage ? (
-          <img
-            src={share.coverImage}
-            alt={share.title}
-            className="h-full w-full object-cover transition-transform group-hover:scale-105"
-          />
-        ) : (
-          <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-muted to-muted-foreground/10">
-            <span className="text-4xl text-muted-foreground/30">📁</span>
-          </div>
+    <Link href={`/share/${share.id}`} className="block">
+      <Card
+        className={cn(
+          'group relative h-full cursor-pointer overflow-hidden transition-all hover:shadow-lg',
+          isExpired && 'opacity-60'
         )}
-
-        {/* Disk Type Badge */}
-        <Badge
-          className={cn(
-            'absolute left-2 top-2 text-white',
-            diskTypeColors[share.diskType as DiskType] || diskTypeColors.other
+      >
+        {/* Cover Image */}
+        <div className="bg-muted relative aspect-video w-full overflow-hidden">
+          {share.coverImage ? (
+            <img
+              src={share.coverImage}
+              alt={share.title}
+              className="h-full w-full object-cover transition-transform group-hover:scale-105"
+            />
+          ) : (
+            <div className="from-muted to-muted-foreground/10 flex h-full w-full items-center justify-center bg-gradient-to-br">
+              <span className="text-muted-foreground/30 text-4xl">📁</span>
+            </div>
           )}
-        >
-          {DiskTypeLabels[share.diskType as DiskType] || share.diskType}
-        </Badge>
 
-        {/* Expired Badge */}
-        {isExpired && (
-          <Badge variant="destructive" className="absolute right-2 top-2">
-            已过期
+          {/* Disk Type Badge */}
+          <Badge
+            className={cn(
+              'absolute top-2 left-2 text-white',
+              diskTypeColors[share.diskType as DiskType] || diskTypeColors.other
+            )}
+          >
+            {DiskTypeLabels[share.diskType as DiskType] || share.diskType}
           </Badge>
-        )}
-      </div>
 
-      <CardHeader className="pb-2">
-        <CardTitle className="line-clamp-1 text-lg">{share.title}</CardTitle>
-        {share.description && (
-          <CardDescription className="line-clamp-2">
-            {share.description}
-          </CardDescription>
-        )}
-      </CardHeader>
-
-      <CardContent className="pb-2">
-        <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
-          <span>{formatDate(share.createdAt)}</span>
-          {share.expiredAt && (
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <span className="flex items-center gap-1">
-                    <Clock className="h-3 w-3" />
-                    {formatDate(share.expiredAt)}
-                  </span>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>过期时间</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+          {/* Expired Badge */}
+          {isExpired && (
+            <Badge variant="destructive" className="absolute top-2 right-2">
+              已过期
+            </Badge>
           )}
         </div>
-      </CardContent>
 
-      <CardFooter className="flex gap-2 pt-2">
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button
-                variant="default"
-                size="sm"
-                className="flex-1"
-                onClick={handleCopyAll}
-                disabled={isExpired}
-              >
-                {copied === 'url' ? (
-                  <Check className="mr-1 h-4 w-4" />
-                ) : (
-                  <Copy className="mr-1 h-4 w-4" />
-                )}
-                {isLoggedIn ? '复制链接' : '登录后复制'}
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>{isLoggedIn ? '复制分享链接和提取码' : '登录后可复制'}</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+        <CardHeader className="pb-2">
+          <CardTitle className="line-clamp-1 text-lg">{share.title}</CardTitle>
+          {share.description && (
+            <CardDescription className="line-clamp-2">
+              {share.description}
+            </CardDescription>
+          )}
+        </CardHeader>
 
-        {share.shareCode && (
+        <CardContent className="pb-2">
+          <div className="text-muted-foreground flex flex-wrap items-center gap-2 text-xs">
+            <span>{formatDate(share.createdAt)}</span>
+            {share.expiredAt && (
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <span className="flex items-center gap-1">
+                      <Clock className="h-3 w-3" />
+                      {formatDate(share.expiredAt)}
+                    </span>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>过期时间</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            )}
+          </div>
+        </CardContent>
+
+        <CardFooter className="flex gap-2 pt-2">
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button
-                  variant="outline"
+                  variant="default"
                   size="sm"
-                  onClick={() => handleCopy('code')}
-                  disabled={isExpired}
+                  className="flex-1"
+                  onClick={handleCopyAll}
+                  disabled={isExpired || isLoading}
                 >
-                  {copied === 'code' ? (
-                    <Check className="h-4 w-4" />
+                  {isLoading ? (
+                    <Loader2 className="mr-1 h-4 w-4 animate-spin" />
+                  ) : copied ? (
+                    <Check className="mr-1 h-4 w-4" />
+                  ) : isLoggedIn ? (
+                    <Copy className="mr-1 h-4 w-4" />
                   ) : (
-                    <span className="font-mono text-xs">{share.shareCode}</span>
+                    <Lock className="mr-1 h-4 w-4" />
                   )}
+                  {copied ? '已复制' : isLoggedIn ? '复制链接' : '登录后复制'}
                 </Button>
               </TooltipTrigger>
               <TooltipContent>
-                <p>点击复制提取码</p>
+                <p>{isLoggedIn ? '复制分享链接和提取码' : '登录后可复制'}</p>
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
-        )}
 
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="h-8 w-8"
-                onClick={() => {
-                  if (!isLoggedIn) {
-                    onLoginRequired?.();
-                    return;
-                  }
-                  window.open(share.shareUrl, '_blank');
-                }}
-                disabled={isExpired}
-              >
-                <ExternalLink className="h-4 w-4" />
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>{isLoggedIn ? '打开链接' : '登录后可打开'}</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-      </CardFooter>
-    </Card>
+          {share.hasShareCode && (
+            <Badge variant="secondary" className="h-8 px-2">
+              有提取码
+            </Badge>
+          )}
+
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-8 w-8"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                  }}
+                  disabled={isExpired}
+                >
+                  <ExternalLink className="h-4 w-4" />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>查看详情</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        </CardFooter>
+      </Card>
+    </Link>
   );
 }
