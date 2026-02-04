@@ -2,7 +2,15 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Check, Clock, Copy, ExternalLink, Loader2, Lock } from 'lucide-react';
+import {
+  Check,
+  Clock,
+  Copy,
+  ExternalLink,
+  Loader2,
+  Lock,
+  Share2,
+} from 'lucide-react';
 import { toast } from 'sonner';
 
 import { Badge } from '@/shared/components/ui/badge';
@@ -58,6 +66,7 @@ export function ShareCard({
   onLoginRequired,
 }: ShareCardProps) {
   const [copied, setCopied] = useState(false);
+  const [shareLinkCopied, setShareLinkCopied] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const isExpired = share.expiredAt
@@ -104,6 +113,21 @@ export function ShareCard({
       toast.error('复制失败，请稍后重试');
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleShareLink = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    try {
+      const shareUrl = `${window.location.origin}/share/${share.id}`;
+      await navigator.clipboard.writeText(shareUrl);
+      setShareLinkCopied(true);
+      toast.success('详情页链接已复制');
+      setTimeout(() => setShareLinkCopied(false), 2000);
+    } catch {
+      toast.error('复制失败');
     }
   };
 
@@ -220,6 +244,29 @@ export function ShareCard({
               有提取码
             </Badge>
           )}
+
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-8 w-8"
+                  onClick={handleShareLink}
+                  disabled={isExpired}
+                >
+                  {shareLinkCopied ? (
+                    <Check className="h-4 w-4" />
+                  ) : (
+                    <Share2 className="h-4 w-4" />
+                  )}
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>{shareLinkCopied ? '已复制' : '分享详情页链接'}</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
 
           <TooltipProvider>
             <Tooltip>

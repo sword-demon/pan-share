@@ -20,16 +20,30 @@ export function Image({
     return null;
   }
 
-  const width = metadata?.width || 40;
+  const width = metadata?.width || 60;
   const height = metadata?.height || 40;
 
   return (
-    <LazyImage
-      src={value}
-      alt={value}
-      width={width}
-      height={height}
-      className={cn('shrink-0 rounded-md object-cover', className)}
-    />
+    <div
+      className={cn(
+        'flex items-center justify-center overflow-hidden',
+        className
+      )}
+      style={{
+        width: `${width}px`,
+        height: `${height}px`,
+        minWidth: `${width}px`,
+        maxWidth: `${width}px`,
+        maxHeight: `${height}px`,
+      }}
+    >
+      <LazyImage
+        src={value}
+        alt={value}
+        width={width}
+        height={height}
+        className="h-full w-full rounded-md object-cover"
+      />
+    </div>
   );
 }
