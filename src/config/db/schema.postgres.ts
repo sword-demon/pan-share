@@ -563,6 +563,7 @@ export const panShare = table(
     id: text('id').primaryKey(),
     title: text('title').notNull(), // 标题
     description: text('description'), // 描述
+    content: text('content'), // Markdown 富文本正文
     coverImage: text('cover_image'), // 封面图 URL
     diskType: text('disk_type').notNull(), // 网盘类型: baidu, aliyun, quark, xunlei, 115, other
     shareUrl: text('share_url').notNull(), // 分享链接
