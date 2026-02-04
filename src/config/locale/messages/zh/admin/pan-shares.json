@@ -3,6 +3,7 @@
     "id": "ID",
     "title": "标题",
     "description": "描述",
+    "content": "详细说明",
     "cover_image": "封面图",
     "disk_type": "网盘类型",
     "share_url": "分享链接",

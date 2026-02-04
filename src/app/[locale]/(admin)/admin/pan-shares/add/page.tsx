@@ -60,6 +60,12 @@ export default async function PanShareAddPage({
         title: t('fields.description'),
       },
       {
+        name: 'content',
+        type: 'markdown_editor',
+        title: t('fields.content'),
+        tip: 'Markdown supported; images can be pasted or uploaded',
+      },
+      {
         name: 'coverImage',
         type: 'upload_image',
         title: t('fields.cover_image'),
@@ -111,6 +117,7 @@ export default async function PanShareAddPage({
 
         const title = data.get('title') as string;
         const description = data.get('description') as string;
+        const content = data.get('content') as string;
         const coverImage = data.get('coverImage') as string;
         const diskType = data.get('diskType') as DiskType;
         const shareUrl = data.get('shareUrl') as string;
@@ -125,6 +132,7 @@ export default async function PanShareAddPage({
           id: getUuid(),
           title: title.trim(),
           description: description?.trim() || null,
+          content: content?.trim() || null,
           coverImage: coverImage?.trim() || null,
           diskType: diskType || DiskType.BAIDU,
           shareUrl: shareUrl.trim(),

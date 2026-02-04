@@ -3,6 +3,7 @@
     "id": "ID",
     "title": "Title",
     "description": "Description",
+    "content": "Content",
     "cover_image": "Cover Image",
     "disk_type": "Disk Type",
     "share_url": "Share URL",
