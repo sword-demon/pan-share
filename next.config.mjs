@@ -16,8 +16,18 @@ const withNextIntl = createNextIntlPlugin({
 const nextConfig = {
   output: process.env.VERCEL ? undefined : 'standalone',
   reactStrictMode: false,
+  // Mark ali-oss and its dependencies as external (server-side only)
+  serverExternalPackages: ['ali-oss', 'urllib', 'proxy-agent'],
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   images: {
+    // Use custom OSS loader if OSS_IMAGE_LOADER is enabled
+    // This uses Aliyun's image processing instead of Next.js/Vercel (saves costs)
+    ...(process.env.OSS_IMAGE_LOADER === 'true'
+      ? {
+          loader: 'custom',
+          loaderFile: './src/shared/lib/oss-loader.ts',
+        }
+      : {}),
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     qualities: [60, 70, 75],
@@ -25,6 +35,15 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: '*',
+      },
+      // Aliyun OSS patterns
+      {
+        protocol: 'https',
+        hostname: '*.oss-cn-*.aliyuncs.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.oss.aliyuncs.com',
       },
     ],
   },

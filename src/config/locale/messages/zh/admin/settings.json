@@ -9,6 +9,7 @@
     "paypal": "Paypal",
     "resend": "Resend",
     "r2": "Cloudflare R2",
+    "aliyun_oss": "阿里云 OSS",
     "s3": "AWS S3",
     "openrouter": "OpenRouter",
     "replicate": "Replicate",

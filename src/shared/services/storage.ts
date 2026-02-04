@@ -1,4 +1,9 @@
-import { R2Provider, S3Provider, StorageManager } from '@/extensions/storage';
+import {
+  AliyunOSSProvider,
+  R2Provider,
+  S3Provider,
+  StorageManager,
+} from '@/extensions/storage';
 import { Configs, getAllConfigs } from '@/shared/models/config';
 
 /**
@@ -29,6 +34,29 @@ export function getStorageServiceWithConfigs(configs: Configs) {
         publicDomain: configs.r2_domain,
       }),
       true // Set R2 as default
+    );
+  }
+
+  // Add Aliyun OSS provider if configured
+  if (
+    configs.oss_region &&
+    configs.oss_access_key_id &&
+    configs.oss_access_key_secret &&
+    configs.oss_bucket
+  ) {
+    const isOssDefault = !storageManager.getProviderNames().length; // Set as default if no other provider
+    storageManager.addProvider(
+      new AliyunOSSProvider({
+        region: configs.oss_region,
+        accessKeyId: configs.oss_access_key_id,
+        accessKeySecret: configs.oss_access_key_secret,
+        bucket: configs.oss_bucket,
+        uploadPath: configs.oss_upload_path,
+        endpoint: configs.oss_endpoint,
+        publicDomain: configs.oss_public_domain,
+        internal: configs.oss_internal === 'true',
+      }),
+      isOssDefault
     );
   }
 
