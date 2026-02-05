@@ -2,15 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import {
-  Check,
-  Clock,
-  Copy,
-  ExternalLink,
-  Loader2,
-  Lock,
-  Share2,
-} from 'lucide-react';
+import { Check, Clock, Copy, ExternalLink, Loader2, Share2 } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { Badge } from '@/shared/components/ui/badge';
@@ -78,11 +70,6 @@ export function ShareCard({
     e.preventDefault();
     e.stopPropagation();
 
-    if (!isLoggedIn) {
-      onLoginRequired?.();
-      return;
-    }
-
     setIsLoading(true);
     try {
       const response = await fetch(`/api/pan-shares/${share.id}/secret`, {
@@ -93,10 +80,6 @@ export function ShareCard({
       });
 
       if (!response.ok) {
-        if (response.status === 401) {
-          onLoginRequired?.();
-          return;
-        }
         throw new Error('获取分享信息失败');
       }
 
@@ -225,18 +208,16 @@ export function ShareCard({
                     <Loader2 className="mr-1 h-4 w-4 shrink-0 animate-spin" />
                   ) : copied ? (
                     <Check className="mr-1 h-4 w-4 shrink-0" />
-                  ) : isLoggedIn ? (
-                    <Copy className="mr-1 h-4 w-4 shrink-0" />
                   ) : (
-                    <Lock className="mr-1 h-4 w-4 shrink-0" />
+                    <Copy className="mr-1 h-4 w-4 shrink-0" />
                   )}
                   <span className="truncate">
-                    {copied ? '已复制' : isLoggedIn ? '复制链接' : '登录后复制'}
+                    {copied ? '已复制' : '复制链接'}
                   </span>
                 </Button>
               </TooltipTrigger>
               <TooltipContent>
-                <p>{isLoggedIn ? '复制分享链接和提取码' : '登录后可复制'}</p>
+                <p>复制分享链接和提取码</p>
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>

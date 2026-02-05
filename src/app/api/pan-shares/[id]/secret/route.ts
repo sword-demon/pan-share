@@ -1,24 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 import { findPanShareById, PanShareStatus } from '@/shared/models/pan_share';
-import { getSignUser } from '@/shared/models/user';
 
 /**
  * POST /api/pan-shares/[id]/secret
- * Get share URL and code (requires authentication)
- * Using POST instead of GET to prevent caching and simple URL access
+ * Get share URL and code.
+ * 使用 POST 而不是 GET，避免被简单抓取和缓存。
+ * 如需进一步防爬，可在此处增加限流 / 验证逻辑。
  */
 export async function POST(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    // Check authentication
-    const user = await getSignUser();
-    if (!user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
-
     const { id } = await params;
 
     // Find the share
