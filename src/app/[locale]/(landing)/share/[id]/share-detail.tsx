@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import {
   ArrowLeft,
   Calendar,
@@ -14,8 +13,6 @@ import {
   HardDrive,
   Key,
   Link as LinkIcon,
-  Loader2,
-  Lock,
 } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -29,13 +26,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@/shared/components/ui/card';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from '@/shared/components/ui/dialog';
 import { DiskType, DiskTypeLabels } from '@/shared/types/pan_share';
 
 interface ShareData {
@@ -47,23 +37,17 @@ interface ShareData {
   diskType: string;
   expiredAt: string | null;
   createdAt: string;
+  shareUrl: string;
+  shareCode: string | null;
   hasShareCode: boolean;
 }
 
 interface ShareDetailProps {
   share: ShareData;
-  isLoggedIn: boolean;
 }
 
-export function ShareDetail({ share, isLoggedIn }: ShareDetailProps) {
-  const router = useRouter();
+export function ShareDetail({ share }: ShareDetailProps) {
   const [copied, setCopied] = useState<'url' | 'code' | 'all' | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [showLoginDialog, setShowLoginDialog] = useState(false);
-  const [shareInfo, setShareInfo] = useState<{
-    shareUrl: string;
-    shareCode: string | null;
-  } | null>(null);
 
   const isExpired = share.expiredAt
     ? new Date(share.expiredAt) < new Date()
@@ -72,51 +56,9 @@ export function ShareDetail({ share, isLoggedIn }: ShareDetailProps) {
   const diskTypeLabel =
     DiskTypeLabels[share.diskType as DiskType] || share.diskType;
 
-  // Fetch share info from API (requires login)
-  const fetchShareInfo = async () => {
-    if (!isLoggedIn) {
-      setShowLoginDialog(true);
-      return null;
-    }
-
-    if (shareInfo) {
-      return shareInfo;
-    }
-
-    setIsLoading(true);
-    try {
-      const response = await fetch(`/api/pan-shares/${share.id}/secret`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
-      if (!response.ok) {
-        if (response.status === 401) {
-          setShowLoginDialog(true);
-          return null;
-        }
-        throw new Error('获取分享信息失败');
-      }
-
-      const data = await response.json();
-      setShareInfo(data);
-      return data;
-    } catch (error) {
-      toast.error('获取分享信息失败，请稍后重试');
-      return null;
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   const handleCopyUrl = async () => {
-    const info = await fetchShareInfo();
-    if (!info) return;
-
     try {
-      await navigator.clipboard.writeText(info.shareUrl);
+      await navigator.clipboard.writeText(share.shareUrl);
       setCopied('url');
       toast.success('链接已复制');
       setTimeout(() => setCopied(null), 2000);
@@ -126,11 +68,10 @@ export function ShareDetail({ share, isLoggedIn }: ShareDetailProps) {
   };
 
   const handleCopyCode = async () => {
-    const info = await fetchShareInfo();
-    if (!info?.shareCode) return;
+    if (!share.shareCode) return;
 
     try {
-      await navigator.clipboard.writeText(info.shareCode);
+      await navigator.clipboard.writeText(share.shareCode);
       setCopied('code');
       toast.success('提取码已复制');
       setTimeout(() => setCopied(null), 2000);
@@ -140,13 +81,10 @@ export function ShareDetail({ share, isLoggedIn }: ShareDetailProps) {
   };
 
   const handleCopyAll = async () => {
-    const info = await fetchShareInfo();
-    if (!info) return;
-
     try {
-      const text = info.shareCode
-        ? `${info.shareUrl}\n提取码: ${info.shareCode}`
-        : info.shareUrl;
+      const text = share.shareCode
+        ? `${share.shareUrl}\n提取码: ${share.shareCode}`
+        : share.shareUrl;
       await navigator.clipboard.writeText(text);
       setCopied('all');
       toast.success('已复制链接和提取码');
@@ -156,11 +94,8 @@ export function ShareDetail({ share, isLoggedIn }: ShareDetailProps) {
     }
   };
 
-  const handleOpenLink = async () => {
-    const info = await fetchShareInfo();
-    if (!info) return;
-
-    window.open(info.shareUrl, '_blank');
+  const handleOpenLink = () => {
+    window.open(share.shareUrl, '_blank');
   };
 
   return (
@@ -274,9 +209,7 @@ export function ShareDetail({ share, isLoggedIn }: ShareDetailProps) {
                   获取资源
                 </CardTitle>
                 <CardDescription>
-                  {isLoggedIn
-                    ? '点击下方按钮获取分享链接'
-                    : '登录后可获取分享链接和提取码'}
+                  点击下方按钮复制分享链接和提取码
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -285,22 +218,14 @@ export function ShareDetail({ share, isLoggedIn }: ShareDetailProps) {
                   className="w-full"
                   size="lg"
                   onClick={handleCopyAll}
-                  disabled={isExpired || isLoading}
+                  disabled={isExpired}
                 >
-                  {isLoading ? (
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  ) : copied === 'all' ? (
+                  {copied === 'all' ? (
                     <Check className="mr-2 h-4 w-4" />
-                  ) : isLoggedIn ? (
-                    <Copy className="mr-2 h-4 w-4" />
                   ) : (
-                    <Lock className="mr-2 h-4 w-4" />
+                    <Copy className="mr-2 h-4 w-4" />
                   )}
-                  {copied === 'all'
-                    ? '已复制'
-                    : isLoggedIn
-                      ? '复制链接和提取码'
-                      : '登录后复制'}
+                  {copied === 'all' ? '已复制' : '复制链接和提取码'}
                 </Button>
 
                 {/* Separate copy buttons */}
@@ -308,7 +233,7 @@ export function ShareDetail({ share, isLoggedIn }: ShareDetailProps) {
                   <Button
                     variant="outline"
                     onClick={handleCopyUrl}
-                    disabled={isExpired || isLoading}
+                    disabled={isExpired}
                   >
                     {copied === 'url' ? (
                       <Check className="mr-1 h-4 w-4" />
@@ -321,7 +246,7 @@ export function ShareDetail({ share, isLoggedIn }: ShareDetailProps) {
                   <Button
                     variant="outline"
                     onClick={handleCopyCode}
-                    disabled={isExpired || isLoading || !share.hasShareCode}
+                    disabled={isExpired || !share.hasShareCode}
                   >
                     {copied === 'code' ? (
                       <Check className="mr-1 h-4 w-4" />
@@ -341,7 +266,7 @@ export function ShareDetail({ share, isLoggedIn }: ShareDetailProps) {
                   variant="secondary"
                   className="w-full"
                   onClick={handleOpenLink}
-                  disabled={isExpired || isLoading}
+                  disabled={isExpired}
                 >
                   <ExternalLink className="mr-2 h-4 w-4" />
                   打开链接
@@ -357,35 +282,6 @@ export function ShareDetail({ share, isLoggedIn }: ShareDetailProps) {
           </div>
         </div>
       </div>
-
-      {/* Login Dialog */}
-      <Dialog open={showLoginDialog} onOpenChange={setShowLoginDialog}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>需要登录</DialogTitle>
-            <DialogDescription>
-              登录后即可获取分享链接和提取码
-            </DialogDescription>
-          </DialogHeader>
-          <div className="flex gap-4">
-            <Button
-              variant="outline"
-              className="flex-1"
-              onClick={() => setShowLoginDialog(false)}
-            >
-              取消
-            </Button>
-            <Button
-              className="flex-1"
-              onClick={() => {
-                router.push(`/sign-in?callbackUrl=/share/${share.id}`);
-              }}
-            >
-              去登录
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
     </>
   );
 }

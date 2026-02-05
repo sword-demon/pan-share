@@ -3,7 +3,6 @@ import { notFound } from 'next/navigation';
 import { setRequestLocale } from 'next-intl/server';
 
 import { findPanShareById, PanShareStatus } from '@/shared/models/pan_share';
-import { getSignUser } from '@/shared/models/user';
 
 import { ShareDetail } from './share-detail';
 
@@ -38,8 +37,6 @@ export default async function ShareDetailPage({ params }: Props) {
     notFound();
   }
 
-  const user = await getSignUser();
-
   // Convert Date to string for client component
   const shareData = {
     id: share.id,
@@ -50,14 +47,16 @@ export default async function ShareDetailPage({ params }: Props) {
     diskType: share.diskType,
     expiredAt: share.expiredAt?.toISOString() || null,
     createdAt: share.createdAt.toISOString(),
-    // Don't expose shareUrl and shareCode directly - they will be fetched via API
+    // Public share info - anyone can copy
+    shareUrl: share.shareUrl,
+    shareCode: share.shareCode,
     hasShareCode: !!share.shareCode,
   };
 
   return (
     <div className="bg-muted/30 min-h-screen pt-20 pb-12">
       <div className="container mx-auto px-4">
-        <ShareDetail share={shareData} isLoggedIn={!!user} />
+        <ShareDetail share={shareData} />
       </div>
     </div>
   );
