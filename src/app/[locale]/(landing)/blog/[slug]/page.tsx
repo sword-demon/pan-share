@@ -3,6 +3,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { getThemePage } from '@/core/theme';
 import { envConfigs } from '@/config';
 import { Empty } from '@/shared/blocks/common';
+import { ArticleJsonLd } from '@/shared/blocks/common/article-json-ld';
 import { getPost } from '@/shared/models/post';
 import { DynamicPage } from '@/shared/types/blocks/landing';
 
@@ -69,5 +70,17 @@ export default async function BlogDetailPage({
 
   const Page = await getThemePage('dynamic-page');
 
-  return <Page locale={locale} page={page} />;
+  return (
+    <>
+      <ArticleJsonLd
+        title={post.title || ''}
+        description={post.description}
+        slug={slug}
+        image={post.image}
+        authorName={post.author_name}
+        publishedAt={post.created_at}
+      />
+      <Page locale={locale} page={page} />
+    </>
+  );
 }

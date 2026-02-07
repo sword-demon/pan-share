@@ -6,6 +6,7 @@ import NextTopLoader from 'nextjs-toploader';
 
 import { envConfigs } from '@/config';
 import { locales } from '@/config/locale';
+import { WebSiteJsonLd } from '@/shared/blocks/common/json-ld';
 import { UtmCapture } from '@/shared/blocks/common/utm-capture';
 import { getAllConfigs } from '@/shared/models/config';
 import { getAdsService } from '@/shared/services/ads';
@@ -123,6 +124,7 @@ export default async function RootLayout({
                 href={`${appUrl}${loc === 'en' ? '' : `/${loc}`}`}
               />
             ))}
+            <link rel="alternate" hrefLang="x-default" href={appUrl} />
           </>
         ) : null}
 
@@ -145,6 +147,9 @@ export default async function RootLayout({
         {customerServiceMetaTags}
         {/* inject customer service head scripts */}
         {customerServiceHeadScripts}
+
+        {/* structured data */}
+        <WebSiteJsonLd />
       </head>
       <body suppressHydrationWarning className="overflow-x-hidden">
         <NextTopLoader
